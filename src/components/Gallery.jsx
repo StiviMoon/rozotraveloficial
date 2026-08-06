@@ -1,35 +1,47 @@
 import React from 'react';
-import { Camera } from 'lucide-react';
-import { motion } from 'framer-motion';
+import BrandImage from './BrandImage';
+
+const images = [
+  { src: '/images/galeria/foto-1.jpg', alt: 'Espacio principal', span: 'md:col-span-2 md:row-span-2', tone: 'dark' },
+  { src: '/images/galeria/foto-2.jpg', alt: 'Evento social', tone: 'orange' },
+  { src: '/images/galeria/foto-3.jpg', alt: 'Gastronomía', tone: 'orange' },
+  { src: '/images/galeria/foto-4.jpg', alt: 'Exterior de finca', tone: 'green' },
+  { src: '/images/galeria/foto-5.jpg', alt: 'Experiencia en familia', tone: 'cream' },
+];
 
 const Gallery = () => {
   return (
-    <section id="galeria" className="py-0 bg-white">
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 h-[600px] gap-1 p-1"
-      >
-        <div className="row-span-2 col-span-2 relative overflow-hidden group">
-          <img src="/images/galeria/foto-1.jpg" alt="Resort pool" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <span className="text-white font-bold text-xl flex items-center gap-2"><Camera /> Espacios únicos</span>
+    <section id="galeria" className="bg-rozo-dark">
+      <div className="shell py-16 md:py-20">
+        <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.38em] text-rozo-amber">
+              Galería
+            </p>
+            <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight text-white md:text-5xl">
+              Atmósfera <span className="italic text-rozo-amber">Rozó</span>
+            </h2>
           </div>
+          <p className="max-w-sm font-sans text-sm font-light text-white/50 md:text-right">
+            Espacios reales para pasadías, eventos y experiencias gastronómicas.
+          </p>
         </div>
-        <div className="relative overflow-hidden group">
-          <img src="/images/galeria/foto-2.jpg" alt="Evento social" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:grid-rows-2 md:gap-3 md:h-[560px]">
+          {images.map((img) => (
+            <div
+              key={img.src}
+              className={`media-zoom group relative min-h-[180px] ${img.span || ''}`}
+            >
+              <BrandImage src={img.src} alt={img.alt} label={img.alt} tone={img.tone} />
+              <div className="pointer-events-none absolute inset-0 z-[2] bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
+              <span className="pointer-events-none absolute bottom-3 left-3 z-[3] font-sans text-[10px] uppercase tracking-[0.2em] text-white/0 transition-all duration-500 group-hover:text-white/80">
+                {img.alt}
+              </span>
+            </div>
+          ))}
         </div>
-        <div className="relative overflow-hidden group">
-          <img src="/images/galeria/foto-3.jpg" alt="Gastronomía" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-        </div>
-        <div className="relative overflow-hidden group">
-          <img src="/images/galeria/foto-4.jpg" alt="Exterior finca" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-        </div>
-        <div className="relative overflow-hidden group">
-          <img src="/images/galeria/foto-5.jpg" alt="Familia" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-        </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

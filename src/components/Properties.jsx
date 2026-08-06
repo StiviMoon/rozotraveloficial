@@ -1,116 +1,181 @@
-import React from 'react';
-import { MapPin, Users, Flame, Wifi, ArrowRight, Droplets, Music, TreePine, Star } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { MapPin, Users, ArrowUpRight } from 'lucide-react';
+import BrandImage from './BrandImage';
 
 const propertiesData = [
   {
-    name: 'Finca La Esperanza',
-    location: 'Rozó',
-    capacity: 20,
-    price: '$850k',
-    rating: 4.9,
+    name: 'Finca N°1',
+    location: 'Rozo — La Torre',
+    capacity: 100,
     img: '/images/fincas/finca-1.jpg',
-    amenities: [
-      { name: 'Piscina', icon: <Droplets size={14} /> },
-      { name: 'BBQ', icon: <Flame size={14} /> },
-      { name: 'WiFi', icon: <Wifi size={14} /> }
-    ]
+    amenities: ['Piscina + Jacuzzi climatizado', 'Cancha de fútbol', 'Billar y sapo', '4 baños', '20 vehículos'],
   },
   {
-    name: 'Villa del Sol',
-    location: 'La Torre, Rozó',
-    capacity: 35,
-    price: '$1.2M',
-    rating: 5.0,
+    name: 'Finca N°2',
+    location: 'Rozo Principal',
+    capacity: 150,
     img: '/images/fincas/finca-2.jpg',
-    amenities: [
-      { name: 'Piscina Priv.', icon: <Droplets size={14} /> },
-      { name: 'Zona Eventos', icon: <Music size={14} /> }
-    ]
+    note: 'Capacidad para buses · carpas opcionales',
+    amenities: ['Piscina + Jacuzzi', 'Cancha de fútbol', 'Juego de sapo', '9 baños', '30 vehículos'],
   },
   {
-    name: 'Refugio Campestre',
-    location: 'Rozó Centro',
-    capacity: 15,
-    price: '$600k',
-    rating: 4.8,
+    name: 'Finca N°3',
+    location: 'Rozo — La Torre',
+    capacity: 80,
     img: '/images/fincas/finca-3.jpg',
-    amenities: [
-      { name: 'Áreas Verdes', icon: <TreePine size={14} /> },
-      { name: 'Cancha', icon: <Users size={14} /> }
-    ]
-  }
+    note: 'Carpas opcionales',
+    amenities: ['Piscina + Jacuzzi y sauna', 'Cancha de fútbol', 'Sapo y billar', '5 baños', '20 vehículos'],
+  },
+  {
+    name: 'Finca N°4',
+    location: 'Rozo Principal',
+    capacity: 80,
+    img: '/images/fincas/finca-1.jpg',
+    note: 'Carpas opcionales',
+    amenities: ['Piscina + Jacuzzi y cascada', 'Cancha de fútbol', 'Sapo y billar', '4 baños', '30 vehículos'],
+  },
+  {
+    name: 'Finca N°5',
+    location: 'Rozo — La Torre',
+    capacity: 60,
+    img: '/images/fincas/finca-2.jpg',
+    amenities: ['Piscina + Jacuzzi', 'Fútbol y voleibol', 'Juego de sapo', '4 baños', '15 vehículos'],
+  },
+  {
+    name: 'Finca N°6',
+    location: 'Rozo — La Torre',
+    capacity: 120,
+    img: '/images/fincas/finca-3.jpg',
+    note: 'Salón adicional para 30 · carpas opcionales',
+    amenities: ['Piscina + Jacuzzi', 'Cancha de fútbol', 'Sapo y billar', '6 baños', '20 vehículos'],
+  },
+  {
+    name: 'Finca N°7',
+    location: 'Rozo Principal',
+    capacity: 100,
+    img: '/images/fincas/finca-1.jpg',
+    note: 'Carpas opcionales',
+    amenities: ['Piscina + Jacuzzi', 'Cancha mediana', 'Sapo y billar', '5 baños', '10 vehículos'],
+  },
+  {
+    name: 'Finca N°8',
+    location: 'Vía Palmira — Rozo',
+    capacity: 900,
+    img: '/images/fincas/finca-2.jpg',
+    note: 'Capacidad con montaje de carpas',
+    highlight: 'Eventos masivos',
+    amenities: ['Piscina', 'Cancha de fútbol', 'Zonas verdes', '5 baños', '30 vehículos'],
+  },
+  {
+    name: 'Finca N°9',
+    location: 'Rozo Principal',
+    capacity: 100,
+    img: '/images/fincas/finca-3.jpg',
+    amenities: ['Piscinas + jacuzzi y sauna', 'Cancha de fútbol', 'Billar y sapo', '6 baños', '10 vehículos'],
+  },
+  {
+    name: 'Finca N°10',
+    location: 'Tienda Nueva, Palmira',
+    capacity: 400,
+    img: '/images/fincas/finca-1.jpg',
+    highlight: 'Gran capacidad',
+    amenities: ['Piscinas adultos y niños', 'Cancha de fútbol', 'Billar y sapo', '10 baños', '50 vehículos'],
+  },
+  {
+    name: 'Finca N°11',
+    location: 'Rozo — Matapalo',
+    capacity: 150,
+    img: '/images/fincas/finca-2.jpg',
+    amenities: ['Piscina adultos + Jacuzzi', 'Cancha de fútbol', 'Billar y sapo', '4 baños', '20 vehículos'],
+  },
 ];
 
-const Properties = () => {
-  return (
-    <section id="fincas" className="py-20 bg-rozo-cream relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-rozo-orange/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-rozo-green/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row justify-between items-end mb-12"
-        >
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-rozo-dark mb-4">
-              Fincas <span className="font-script text-rozo-green text-5xl font-normal">Destacadas</span>
-            </h2>
-            <p className="text-gray-600 max-w-xl">Descubre nuestras propiedades top en el corazón del Valle del Cauca, equipadas con todo lo necesario para tu confort.</p>
-          </div>
-          <a href="https://wa.me/573189332134" target="_blank" rel="noreferrer" className="mt-4 md:mt-0 font-semibold text-rozo-orange hover:text-rozo-amber flex items-center gap-2 transition-colors">
-            Ver todas <ArrowRight size={18} />
-          </a>
-        </motion.div>
+const INITIAL_VISIBLE = 6;
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {propertiesData.map((prop, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-gray-100/50 relative group"
-            >
-              <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-rozo-green z-10 flex items-center gap-1 shadow-sm">
-                <Star size={12} className="text-rozo-amber fill-rozo-amber" /> {prop.rating}
-              </div>
-              <div className="h-64 card-img-container relative">
-                <img src={prop.img} alt={prop.name} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <a href="#" className="bg-white text-rozo-dark px-6 py-2 rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">Ver Detalles</a>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-rozo-dark mb-2">{prop.name}</h3>
-                <div className="flex items-center text-sm text-gray-500 mb-4 gap-4">
-                  <span className="flex items-center gap-1"><MapPin size={16} className="text-rozo-orange" /> {prop.location}</span>
-                  <span className="flex items-center gap-1"><Users size={16} className="text-rozo-orange" /> Cap: {prop.capacity} pers.</span>
-                </div>
-                <div className="flex gap-2 mb-6 flex-wrap">
-                  {prop.amenities.map((am, i) => (
-                    <span key={i} className="bg-rozo-cream text-rozo-green text-xs px-2 py-1 rounded-md flex items-center gap-1">
-                      {am.icon} {am.name}
+const Properties = () => {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? propertiesData : propertiesData.slice(0, INITIAL_VISIBLE);
+
+  return (
+    <section id="fincas" className="section bg-white">
+      <div className="shell">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="section-label">Fincas</p>
+            <h2 className="section-title max-w-lg">
+              Espacios para{' '}
+              <span className="italic text-rozo-green">celebrar</span>
+            </h2>
+            <p className="section-lead">
+              11 fincas en Rozo, La Torre, Matapalo y Palmira. Salones desde 60 hasta 900 personas.
+            </p>
+          </div>
+          <a
+            href="/cotizacion-catering-eventos-2026.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-rozo-orange hover:text-rozo-dark"
+          >
+            Cotización PDF <ArrowUpRight size={14} />
+          </a>
+        </div>
+
+        <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+          {visible.map((prop) => (
+            <article key={prop.name} className="group flex flex-col">
+              <div className="media-zoom relative aspect-[5/4]">
+                <BrandImage src={prop.img} alt={prop.name} label={prop.name} tone="green" />
+                <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 z-[3] flex items-end justify-between gap-3">
+                  <h3 className="font-display text-2xl font-semibold text-white">{prop.name}</h3>
+                  {prop.highlight && (
+                    <span className="bg-rozo-orange px-2 py-1 font-sans text-[10px] font-semibold uppercase tracking-wider text-white">
+                      {prop.highlight}
                     </span>
-                  ))}
-                </div>
-                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                  <div>
-                    <span className="text-xs text-gray-500 block">Desde</span>
-                    <span className="text-lg font-bold text-rozo-dark">{prop.price} <span className="text-sm font-normal text-gray-500">/noche</span></span>
-                  </div>
-                  <a href={`https://wa.me/573189332134?text=Deseo%20reservar%20${encodeURIComponent(prop.name)}`} target="_blank" rel="noreferrer" className="bg-gradient-green text-white px-5 py-2.5 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all">
-                    Reservar
-                  </a>
+                  )}
                 </div>
               </div>
-            </motion.div>
+
+              <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-sans text-sm text-rozo-dark/55">
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin size={14} className="text-rozo-orange" /> {prop.location}
+                </span>
+                <span className="inline-flex items-center gap-1.5 font-medium text-rozo-dark">
+                  <Users size={14} className="text-rozo-orange" /> {prop.capacity} pers.
+                </span>
+              </div>
+
+              {prop.note && (
+                <p className="mt-2 font-sans text-xs text-rozo-green">{prop.note}</p>
+              )}
+
+              <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
+                {prop.amenities.map((am) => (
+                  <li key={am} className="font-sans text-xs text-rozo-dark/45">
+                    {am}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={`https://wa.me/573189332134?text=${encodeURIComponent(`Hola RozoTravel, quiero cotizar la ${prop.name} (${prop.location}) para un evento.`)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-5 inline-flex w-fit items-center gap-2 border-b border-rozo-dark/20 pb-1 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-rozo-dark transition-colors hover:border-rozo-orange hover:text-rozo-orange"
+              >
+                Cotizar finca <ArrowUpRight size={13} />
+              </a>
+            </article>
           ))}
         </div>
+
+        {!showAll && (
+          <div className="mt-14 text-center">
+            <button type="button" onClick={() => setShowAll(true)} className="btn-ghost rounded-sm">
+              Ver las {propertiesData.length} fincas
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

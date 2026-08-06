@@ -15,7 +15,8 @@ export default {
         'rozo-dark': '#2B2B2B',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Karla', 'sans-serif'],
+        display: ['Fraunces', 'Georgia', 'serif'],
         script: ['Dancing Script', 'cursive'],
       },
       backgroundImage: {

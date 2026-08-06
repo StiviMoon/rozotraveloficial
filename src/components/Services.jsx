@@ -1,98 +1,137 @@
 import React from 'react';
-import { Home, Building2, Users, Utensils, Key } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import BrandImage from './BrandImage';
 
 const servicesData = [
   {
-    title: 'Alquiler de Fincas',
-    desc: 'Fincas exclusivas para descanso y disfrute en familia o con amigos.',
+    num: '01',
+    title: 'Pasadías y fincas',
+    desc: '11 fincas en Rozo, La Torre, Matapalo y Palmira. Salones de 60 a 900 personas, piscina, jacuzzi, canchas y parqueadero.',
     img: '/images/servicios/servicio-5.jpg',
-    icon: <Home size={20} />,
-    colorClass: 'text-rozo-orange bg-rozo-orange/20',
-    btnMessage: 'Hola, quisiera cotizar el alquiler de una finca.'
+    btnMessage: 'Hola, quisiera cotizar un pasadía o alquiler de finca.',
   },
   {
-    title: 'Eventos Empresariales',
-    desc: 'Espacios y experiencias diseñadas para el éxito de tu empresa.',
+    num: '02',
+    title: 'Eventos empresariales',
+    desc: 'Espacios y catering para integración, reuniones y celebraciones con menú completo y logística.',
     img: '/images/servicios/servicio-1.jpg',
-    icon: <Building2 size={20} />,
-    colorClass: 'text-rozo-green bg-rozo-green/20',
-    btnMessage: 'Hola, quisiera cotizar un evento empresarial.'
+    btnMessage: 'Hola, quisiera cotizar un evento empresarial.',
   },
   {
-    title: 'Eventos Sociales',
-    desc: 'Celebraciones únicas que se convierten en recuerdos inolvidables.',
-    img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    icon: <Users size={20} />,
-    colorClass: 'text-rozo-orange bg-rozo-amber/20',
-    btnMessage: 'Hola, quisiera cotizar un evento social.'
+    num: '03',
+    title: 'Eventos sociales',
+    desc: 'Cumpleaños, aniversarios y celebraciones con asados, platos vallunos, snacks y decoración temática.',
+    img: '/images/servicios/servicio-2.jpg',
+    btnMessage: 'Hola, quisiera cotizar un evento social.',
   },
   {
-    title: 'Catering y Gastronomía',
-    desc: 'Desayunos, almuerzos, asados, platos vallunos y postres para cada ocasión. (¡Descarga nuestro menú abajo!)',
+    num: '04',
+    title: 'Catering y gastronomía',
+    desc: 'Desayunos desde $15.500, asados desde $55.000, fiambre, lechona, snacks y postres. Anticipo 50%.',
     img: '/images/servicios/servicio-4.jpg',
-    icon: <Utensils size={20} />,
-    colorClass: 'text-rozo-brown bg-rozo-brown/20',
-    btnMessage: 'Hola, quisiera cotizar servicios de catering.'
+    btnMessage: 'Hola, quisiera cotizar servicios de catering.',
   },
   {
-    title: 'Venta de Propiedades',
-    desc: 'Encuentra la propiedad ideal para invertir o vivir.',
-    img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    icon: <Key size={20} />,
-    colorClass: 'text-rozo-green bg-rozo-green-light/20',
-    btnMessage: 'Hola, estoy interesado en comprar una propiedad.',
-    fullWidth: true
-  }
+    num: '05',
+    title: 'Entretenimiento',
+    desc: 'DJ, animador, sonido y hora loca (8 h) desde $1.500.000. Grupo musical crossover 1 h desde $1.000.000.',
+    img: '/images/servicios/servicio-3.jpg',
+    btnMessage: 'Hola, quisiera cotizar DJ, sonido o grupo musical.',
+  },
+  {
+    num: '06',
+    title: 'Mobiliario y montaje',
+    desc: 'Sillas, mesas, manteles, vajilla, cristalería y carpas 6×6. Mesero $160.000 c/u · bebidas $15.000 c/u.',
+    img: '/images/servicios/servicio-1.jpg',
+    btnMessage: 'Hola, quisiera cotizar mobiliario y montaje para un evento.',
+  },
+];
+
+const extras = [
+  { label: 'Sillas Rimax', value: '$1.500 c/u' },
+  { label: 'Mesas tablón / redonda', value: '$12.000 / $13.000' },
+  { label: 'Manteles / sobre mantel', value: '$10.000 / $8.000' },
+  { label: 'Vajilla y cristalería', value: '$1.000 c/u' },
+  { label: 'Carpa 6×6', value: '$180.000 c/u' },
+  { label: 'Bebidas ilimitadas', value: '$15.000 c/u' },
 ];
 
 const Services = () => {
   return (
-    <section id="servicios" className="py-20 bg-rozo-cream/30 relative overflow-hidden">
-      {/* Decorative blobs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-rozo-green/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-rozo-orange/5 rounded-full blur-3xl translate-y-1/4 translate-x-1/4"></div>
+    <section id="servicios" className="section bg-white">
+      <div className="shell">
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p className="section-label">Servicios</p>
+            <h2 className="section-title max-w-lg">
+              Todo lo que tu evento{' '}
+              <span className="italic text-rozo-orange">necesita</span>
+            </h2>
+          </div>
+          <p className="section-lead md:mt-0 md:max-w-sm md:text-right">
+            Fincas, catering y logística completa para pasadías y eventos en el Valle.
+          </p>
+        </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-rozo-dark mb-4">
-            Nuestros <span className="font-script text-rozo-orange text-5xl font-normal">Servicios</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-green mx-auto rounded-full"></div>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesData.map((srv, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className={`bg-rozo-cream rounded-2xl overflow-hidden hover-card flex flex-col h-full shadow-md ${srv.fullWidth ? 'md:col-span-2 lg:col-span-1 mx-auto w-full lg:w-auto' : ''}`}
-            >
-              <div className="h-48 card-img-container">
-                <img src={srv.img} alt={srv.title} className="w-full h-full object-cover" />
+        <div className="mt-14 grid grid-cols-1 gap-px bg-rozo-dark/10 md:grid-cols-2 lg:grid-cols-3">
+          {servicesData.map((srv) => (
+            <article key={srv.num} className="group flex flex-col bg-white">
+              <div className="media-zoom relative h-52">
+                <BrandImage src={srv.img} alt={srv.title} label={srv.title} tone="green" />
+                <span className="absolute left-4 top-4 z-10 font-display text-sm text-white/90">
+                  {srv.num}
+                </span>
               </div>
-              <div className="p-6 flex-grow flex flex-col relative z-10 bg-white/80 backdrop-blur-sm">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm ${srv.colorClass}`}>
-                    {srv.icon}
-                  </div>
-                  <h3 className="text-xl font-bold">{srv.title}</h3>
-                </div>
-                <p className="text-gray-600 mb-6 flex-grow">{srv.desc}</p>
-                <a href={`https://wa.me/573189332134?text=${encodeURIComponent(srv.btnMessage)}`} target="_blank" rel="noreferrer" className="mt-auto block text-center bg-white border border-rozo-green/30 text-rozo-green hover:bg-gradient-green hover:border-transparent hover:text-white hover:shadow-lg px-4 py-2.5 rounded-xl font-bold transition-all duration-300">
-                  Cotizar servicio
+              <div className="flex flex-1 flex-col p-6 md:p-7">
+                <h3 className="font-display text-2xl font-semibold tracking-tight text-rozo-dark">
+                  {srv.title}
+                </h3>
+                <p className="mt-3 flex-1 font-sans text-sm font-light leading-relaxed text-rozo-dark/60">
+                  {srv.desc}
+                </p>
+                <a
+                  href={`https://wa.me/573189332134?text=${encodeURIComponent(srv.btnMessage)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-rozo-orange transition-colors hover:text-rozo-dark"
+                >
+                  Cotizar <ArrowUpRight size={14} />
                 </a>
               </div>
-            </motion.div>
+            </article>
           ))}
+        </div>
+
+        <div className="mt-16 border border-rozo-dark/10 bg-rozo-cream/60 p-8 md:p-10">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="section-label">Adicionales 2026</p>
+              <h3 className="mt-2 font-display text-2xl font-semibold text-rozo-dark md:text-3xl">
+                Referencia de montaje
+              </h3>
+            </div>
+            <div className="flex flex-wrap gap-4 text-xs font-medium uppercase tracking-wide">
+              <a href="/cotizacion-catering-eventos-2026.pdf" target="_blank" rel="noreferrer" className="text-rozo-orange hover:underline">
+                Cotización PDF →
+              </a>
+              <a href="/portafolio-gastronomia.pdf" target="_blank" rel="noreferrer" className="text-rozo-green hover:underline">
+                Portafolio →
+              </a>
+            </div>
+          </div>
+          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {extras.map((item) => (
+              <div
+                key={item.label}
+                className="flex items-baseline justify-between gap-4 border-b border-rozo-dark/8 py-3"
+              >
+                <span className="font-sans text-sm text-rozo-dark/70">{item.label}</span>
+                <span className="shrink-0 font-display text-sm font-semibold text-rozo-dark">
+                  {item.value}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
