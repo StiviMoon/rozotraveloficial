@@ -21,6 +21,26 @@
 }
 
 @layer components {
+  .legal-content h2 {
+    @apply font-display text-xl font-semibold tracking-tight text-rozo-dark md:text-2xl;
+  }
+
+  .legal-content p {
+    @apply mt-3;
+  }
+
+  .legal-content ul {
+    @apply mt-3 list-disc space-y-2 pl-5;
+  }
+
+  .legal-content a {
+    @apply font-medium text-rozo-orange underline-offset-2 hover:underline;
+  }
+
+  .legal-content strong {
+    @apply font-semibold text-rozo-dark;
+  }
+
   .shell {
     @apply mx-auto w-full max-w-[1400px] px-6 md:px-10 lg:px-14;
   }

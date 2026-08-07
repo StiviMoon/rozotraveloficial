@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { MapPin, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
@@ -7,7 +8,7 @@ const Footer = () => {
       <div className="shell py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-5">
-            <a href="#inicio" className="inline-block" aria-label="RozoTravel">
+            <Link to="/" className="inline-block" aria-label="RozoTravel">
               <img
                 src="/logopng.png"
                 alt="RozoTravel"
@@ -16,7 +17,7 @@ const Footer = () => {
                 className="h-28 w-auto object-contain md:h-32"
                 decoding="async"
               />
-            </a>
+            </Link>
             <p className="mt-6 max-w-sm font-script text-2xl text-rozo-amber md:text-3xl">
               Más que un servicio, creamos experiencias.
             </p>
@@ -30,11 +31,11 @@ const Footer = () => {
               Explorar
             </p>
             <ul className="mt-5 space-y-3 font-sans text-sm text-white/65">
-              <li><a href="#inicio" className="hover:text-white">Inicio</a></li>
-              <li><a href="#servicios" className="hover:text-white">Servicios</a></li>
-              <li><a href="#fincas" className="hover:text-white">Fincas</a></li>
-              <li><a href="#gastronomia" className="hover:text-white">Menú</a></li>
-              <li><a href="#contacto" className="hover:text-white">Cotizar</a></li>
+              <li><a href="/#inicio" className="hover:text-white">Inicio</a></li>
+              <li><a href="/#servicios" className="hover:text-white">Servicios</a></li>
+              <li><a href="/#fincas" className="hover:text-white">Fincas</a></li>
+              <li><a href="/#gastronomia" className="hover:text-white">Menú</a></li>
+              <li><a href="/#contacto" className="hover:text-white">Cotizar</a></li>
               <li><a href="/portafolio-gastronomia.pdf" target="_blank" rel="noreferrer" className="hover:text-rozo-amber">Portafolio PDF</a></li>
               <li><a href="/cotizacion-catering-eventos-2026.pdf" target="_blank" rel="noreferrer" className="hover:text-rozo-amber">Cotización 2026</a></li>
             </ul>
@@ -95,9 +96,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-8 font-sans text-xs text-white/35 md:flex-row md:items-center">
+        <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 font-sans text-xs text-white/35 md:flex-row md:items-center">
           <p>© {new Date().getFullYear()} RozoTravel. Todos los derechos reservados.</p>
-          <a href="https://www.rozotravel.com" className="hover:text-white/70">www.rozotravel.com</a>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link to="/politica-de-privacidad" className="hover:text-white/70">Privacidad</Link>
+            <Link to="/terminos-y-condiciones" className="hover:text-white/70">Términos</Link>
+            <Link to="/politica-de-cookies" className="hover:text-white/70">Cookies</Link>
+            <a href="https://www.rozotravel.com" className="hover:text-white/70">www.rozotravel.com</a>
+          </div>
         </div>
       </div>
     </footer>

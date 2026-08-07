@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const links = [
-  { href: '#inicio', label: 'Inicio' },
-  { href: '#nosotros', label: 'Nosotros' },
-  { href: '#servicios', label: 'Servicios' },
-  { href: '#gastronomia', label: 'Menú' },
-  { href: '#fincas', label: 'Fincas' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '/#inicio', label: 'Inicio' },
+  { href: '/#nosotros', label: 'Nosotros' },
+  { href: '/#servicios', label: 'Servicios' },
+  { href: '/#gastronomia', label: 'Menú' },
+  { href: '/#fincas', label: 'Fincas' },
+  { href: '/#contacto', label: 'Contacto' },
 ];
 
 const Header = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const solid = !isHome || isScrolled;
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 40);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -28,34 +33,33 @@ const Header = () => {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        isScrolled
+        solid
           ? 'border-b border-rozo-dark/8 bg-rozo-cream/95 py-2 shadow-[0_8px_30px_rgba(43,43,43,0.06)]'
           : 'border-b border-transparent bg-transparent py-3'
       }`}
     >
       <div className="shell flex items-center justify-between gap-6">
-        {/* Brand logo — large, full mark */}
-        <a href="#inicio" className="group relative z-10 shrink-0" aria-label="RozoTravel — Inicio">
+        <Link to="/" className="group relative z-10 shrink-0" aria-label="RozoTravel — Inicio">
           <img
             src="/logopng.png"
             alt="RozoTravel"
             width={1024}
             height={1024}
             className={`w-auto object-contain transition-all duration-500 ${
-              isScrolled
+              solid
                 ? 'h-[5.6rem] md:h-[6.4rem] lg:h-[7.2rem]'
                 : 'h-[6.4rem] md:h-[7.6rem] lg:h-32'
             }`}
             decoding="async"
           />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Principal">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className={`nav-link ${isScrolled ? 'nav-link-scrolled' : ''}`}
+              className={`nav-link ${solid ? 'nav-link-scrolled' : ''}`}
             >
               {link.label}
             </a>
@@ -68,7 +72,7 @@ const Header = () => {
             target="_blank"
             rel="noreferrer"
             className={`btn rounded-sm ${
-              isScrolled
+              solid
                 ? 'bg-rozo-orange text-white hover:bg-[#d4551a]'
                 : 'border border-white/60 text-white hover:bg-white hover:text-rozo-dark'
             }`}
@@ -81,7 +85,7 @@ const Header = () => {
           type="button"
           onClick={() => setMobileOpen(true)}
           className={`lg:hidden flex h-11 w-11 items-center justify-center rounded-sm ${
-            isScrolled ? 'text-rozo-dark' : 'text-white'
+            solid ? 'text-rozo-dark' : 'text-white'
           }`}
           aria-label="Abrir menú"
         >
@@ -89,7 +93,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Full-screen mobile menu */}
       <div
         className={`fixed inset-0 z-[60] bg-rozo-dark transition-all duration-500 lg:hidden ${
           mobileOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
@@ -97,11 +100,13 @@ const Header = () => {
       >
         <div className="shell flex h-full flex-col py-5">
           <div className="flex items-center justify-between gap-4">
-            <img
-              src="/logopng.png"
-              alt="RozoTravel"
-              className="h-16 w-auto object-contain"
-            />
+            <Link to="/" onClick={() => setMobileOpen(false)}>
+              <img
+                src="/logopng.png"
+                alt="RozoTravel"
+                className="h-16 w-auto object-contain"
+              />
+            </Link>
             <button
               type="button"
               onClick={() => setMobileOpen(false)}
