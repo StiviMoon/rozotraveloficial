@@ -1,7 +1,7 @@
 import React from 'react';
 import LegalLayout from '../components/LegalLayout';
 
-const PrivacyPolicy = () => (
+const LegalDatos = () => (
   <LegalLayout title="Política de privacidad" updated="7 de agosto de 2026">
     <section>
       <h2>1. Responsable del tratamiento</h2>
@@ -105,4 +105,4 @@ const PrivacyPolicy = () => (
   </LegalLayout>
 );
 
-export default PrivacyPolicy;
+export default LegalDatos;

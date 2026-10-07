@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LegalLayout from '../components/LegalLayout';
 
-const CookiesPolicy = () => (
+const LegalNavegacion = () => (
   <LegalLayout title="Política de cookies" updated="7 de agosto de 2026">
     <section>
       <h2>1. ¿Qué son las cookies?</h2>
@@ -108,4 +108,4 @@ const CookiesPolicy = () => (
   </LegalLayout>
 );
 
-export default CookiesPolicy;
+export default LegalNavegacion;

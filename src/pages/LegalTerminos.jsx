@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LegalLayout from '../components/LegalLayout';
 
-const TermsAndConditions = () => (
+const LegalTerminos = () => (
   <LegalLayout title="Términos y condiciones" updated="7 de agosto de 2026">
     <section>
       <h2>1. Aceptación</h2>
@@ -102,4 +102,4 @@ const TermsAndConditions = () => (
   </LegalLayout>
 );
 
-export default TermsAndConditions;
+export default LegalTerminos;
