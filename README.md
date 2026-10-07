@@ -1,16 +1,56 @@
-# React + Vite
+# RozoTravel — Landing
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Sitio web de [RozoTravel](https://www.rozotravel.com): alquiler de fincas, pasadías, eventos empresariales y catering en Rozó, Valle del Cauca.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- [Vite](https://vite.dev) + React 19
+- Tailwind CSS 3
+- React Router 7 (SPA)
+- lucide-react (iconos)
+- pnpm
 
-## React Compiler
+## Desarrollo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Requiere Node 20 o superior y pnpm 11.
 
-## Expanding the Oxlint configuration
+```bash
+pnpm install
+pnpm run dev       # http://localhost:5173
+pnpm run build     # genera dist/
+pnpm run preview   # sirve dist/ en local
+pnpm run lint      # oxlint
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Estructura
+
+```
+public/
+  images/{hero,servicios,fincas,gastronomia,galeria,testimonios}/
+  logopng.png
+  portafolio-gastronomia.pdf
+  cotizacion-catering-eventos-2026.pdf
+src/
+  components/   Secciones del home, Header, Footer, BrandImage, LegalLayout
+  pages/        Home y páginas legales
+  index.css     Sistema de diseño (botones, secciones, campos, animaciones)
+```
+
+### Imágenes
+
+Las fotos se cargan con `BrandImage`: mientras la imagen carga, o si no existe, se muestra un placeholder con el logo y los colores de la marca. Para cambiar una foto basta con reemplazar el archivo en `public/images/...` manteniendo el nombre.
+
+### Páginas
+
+| Ruta | Página |
+|---|---|
+| `/` | Home |
+| `/politica-de-privacidad` | Política de tratamiento de datos |
+| `/terminos-y-condiciones` | Términos y condiciones |
+| `/politica-de-cookies` | Política de cookies |
+
+Los archivos de las páginas legales evitan las palabras `Privacy`/`Cookies` en el nombre: algunos bloqueadores (Brave Shields, uBlock) bloquean esos módulos en desarrollo y la página queda en blanco.
+
+## Deploy
+
+Configurado para Vercel en `vercel.json`: build con pnpm, salida en `dist/`, rewrite de todas las rutas a `index.html` y caché inmutable para `/assets`.
